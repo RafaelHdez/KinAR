@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sticker AR</title>
+    
+    <!-- Importamos A-Frame y MindAR -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  </head>
+  
+  <body>
+    <!-- a-scene inicializa la realidad aumentada y le pasamos el archivo .mind -->
+    <a-scene mindar-image="imageTargetSrc: ./Sticker1.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      
+      <!-- a-assets pre-carga el modelo 3D para que no haya retrasos -->
+      <a-assets>
+        <a-asset-item id="miSticker" src="./KinSticker1.glb"></a-asset-item>
+      </a-assets>
+
+      <!-- La cámara virtual -->
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <!-- Aquí le decimos al motor: "Cuando veas la imagen 0 del archivo Sticker1.mind, muestra lo que hay adentro" -->
+      <a-entity mindar-image-target="targetIndex: 0">
+        
+        <!-- El modelo 3D. Aquí puedes ajustar la escala y la rotación si al probarlo se ve muy grande o volteado -->
+        <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#miSticker"></a-gltf-model>
+        
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
